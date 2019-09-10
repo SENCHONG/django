@@ -1,0 +1,157 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Amaze UI Admin index Examples</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="/static/amazeui/amazeui.min.css" />
+  <link rel="stylesheet" href="/static/amazeui/admin.css">
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+  <div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar">
+      <ul class="am-list admin-sidebar-list">
+        <li>
+          <a href="/index">
+            <span class="am-icon-home"></span> 首页
+          </a>
+        </li>
+        <li>
+          <a href="/borrow">
+            <span class="am-icon-file"></span>
+            借阅图书
+          </a>
+        </li>
+        <li>
+          <a href="/return">
+            <span class="am-icon-th"></span>
+            归还图书
+            <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+          </a>
+        </li>
+        <li>
+          <a href="/user">
+            <span class="am-icon-check"></span> 个人信息
+          </a>
+        </li>
+        <li>
+          <a href="/logout">
+            <span class="am-icon-sign-out"></span> 注销
+          </a>
+        </li>
+      </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>书是人类进步的阶梯</p>
+        </div>
+      </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content" style="padding-bottom: 150px;">
+
+      <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">归还图书</strong> / <small>Return Book</small>
+        </div>
+      </div>
+
+      <div class="am-g">
+        <div class="col-sm-12">
+          <table class="am-table am-table-bd am-table-striped admin-content-table">
+            <thead>
+              <tr>
+                <th>编号</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>简介</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td>HGSB552W</td>
+                <td><a href="#">钢铁是怎样炼成的</a></td>
+                <td>刘德华</td>
+                <td>这是一本很励志的书籍，推荐大家阅读！</span></td>
+                <td><button class="am-btn am-btn-default am-btn-xs">正常借阅</button></td>
+                <td>
+                  <div class="am-dropdown" data-am-dropdown>
+                    <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span
+                        class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
+                    <ul class="am-dropdown-content">
+                      <li><a href="#">1. 续借</a></li>
+                      <li><a href="#">2. 归还</a></li>
+                      <li><a href="#">3. 挂失</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- content end -->
+
+  </div>
+
+  <footer style="position: absolute; bottom: -160px; height: 60px; width: 100%;">
+    <hr>
+    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+  </footer>
+
+  <script src="/static/amazeui/zepto.min.js"></script>
+  <script src="/static/amazeui/amazeui.min.js"></script>
+  <script src="/static/amazeui/app.js"></script>
+  <script>
+
+    var retViewportOffset = function () {
+      if (window.innerWidth) {
+        return {
+          w: window.innerWidth,
+          h: window.innerHeight
+        }
+      } else {
+        if (document.compatMode === 'BackCompat') {
+          return {
+            w: document.body.clientWidth,
+            h: document.body.clientHeight
+          }
+        } else {
+          return {
+            w: document.documentElement.clientWidth,
+            h: document.documentElement.clientHeight
+          }
+        }
+      }
+    }
+
+    of = retViewportOffset();
+    document.getElementsByClassName('admin-sidebar')[0].style.height = of.h - 160 + 'px';
+  </script>
+</body>
+
+</html>

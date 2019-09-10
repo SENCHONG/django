@@ -1,0 +1,260 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="/static/amazeui/amazeui.min.css" />
+    <link rel="stylesheet" href="/static/amazeui/admin.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+    <div class="am-cf admin-main">
+        <!-- sidebar start -->
+        <div class="admin-sidebar">
+            <ul class="am-list admin-sidebar-list">
+                <li>
+                    <a href="/index">
+                        <span class="am-icon-home"></span> 首页
+                    </a>
+                </li>
+                <li>
+                    <a href="/borrow">
+                        <span class="am-icon-file"></span>
+                        借阅图书
+                    </a>
+                </li>
+                <li>
+                    <a href="/return">
+                        <span class="am-icon-th"></span>
+                        归还图书
+                        <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/addbook">
+                        <span class="am-icon-pencil-square-o"></span>
+                        添加图书
+                    </a>
+                </li>
+                <li>
+                    <a href="/user">
+                        <span class="am-icon-check"></span> 个人信息
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="am-icon-sign-out"></span> 注销
+                    </a>
+                </li>
+            </ul>
+
+            <div class="am-panel am-panel-default admin-sidebar-panel">
+                <div class="am-panel-bd">
+                    <p><span class="am-icon-bookmark"></span> 公告</p>
+                    <p>书是人类进步的阶梯</p>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar end -->
+        <!-- content start -->
+        <form class="am-form" method="POST" action="/post/addbook">
+            <div class="admin-content">
+
+                <div class="am-cf am-padding">
+                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加图书</strong> /
+                        <small>AddBooks</small>
+                    </div>
+                </div>
+
+                <div class="am-tabs am-margin" data-am-tabs>
+                    <ul class="am-tabs-nav am-nav am-nav-tabs">
+                        <li class="am-active"><a href="#tab1">基本信息</a></li>
+                        <li><a href="#tab2">图书信息</a></li>
+                        <li><a href="#tab3">位置信息</a></li>
+                    </ul>
+
+                    <div class="am-tabs-bd">
+                        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                            <div class="am-g am-margin-top">
+                                <div class="col-sm-2 am-text-right">所属类别</div>
+                                <div class="col-sm-4  col-end">
+                                    <select name="bookclassify">
+                                        <option></option>
+                                        {% for item in bookclassifylist %}
+                                        <option value="{{ item.classifyid }}">{{ item.classifyname}}
+                                        </option>
+                                        {% endfor %}
+                                        <!-- <option name="booktype" value="1">科技</option>
+                                    <option name="booktype" value="2">杂志</option>
+                                    <option name="booktype" value="3">教材</option> -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="am-g am-margin-top">
+                                <div class="col-sm-2 am-text-right">书籍状态</div>
+                                <div class="col-sm-10">
+                                    <div class="am-btn-group" data-am-button>
+                                        {% for item in bookstatelist %}
+                                        <label class="am-btn am-btn-default am-btn-xs">
+                                            <input type="radio" name="bookstate" value="{{ item.stateid }}">
+                                            {{ item.statename }}
+                                        </label>
+                                        {% endfor %}
+                                        <!-- <label class="am-btn am-btn-default am-btn-xs">
+                                        <input type="radio" name="options" id="option1"> 可借阅
+                                    </label>
+                                    <label class="am-btn am-btn-default am-btn-xs">
+                                        <input type="radio" name="options" id="option2"> 待采购
+                                    </label>
+                                    <label class="am-btn am-btn-default am-btn-xs">
+                                        <input type="radio" name="options" id="option3"> 不可借阅
+                                    </label> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="am-g am-margin-top">
+                                <div class="col-sm-2 am-text-right">推荐类型</div>
+                                <div class="col-sm-10">
+                                    <div class="am-btn-group" data-am-button>
+                                        <label class="am-btn am-btn-default am-btn-xs">
+                                            <input type="radio" name="suggest" value="1" required> 最新
+                                        </label>
+                                        <label class="am-btn am-btn-default am-btn-xs">
+                                            <input type="radio" name="suggest" value="2" required> 推荐
+                                        </label>
+                                        <label class="am-btn am-btn-default am-btn-xs">
+                                            <input type="radio" name="suggest" value="3" required> 热门
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="am-tab-panel am-fade" id="tab2">
+                            <!-- <form class="am-form"> -->
+                            <div class="am-g am-margin-top">
+                                <div class="col-sm-2 am-text-right">
+                                    书名
+                                </div>
+                                <div class="col-sm-4 col-end">
+                                    <input type="text" name="bookname" class="am-input-sm" required>
+                                </div>
+                                <div class="col-sm-6">*必须填</div>
+                            </div>
+
+                            <div class="am-g am-margin-top">
+                                <div class="col-sm-2 am-text-right">
+                                    作者
+                                </div>
+                                <div class="col-sm-4 col-end">
+                                    <input type="text" name="author" class="am-input-sm" required>
+                                </div>
+                                <div class="col-sm-6">*必须填</div>
+                            </div>
+
+                            <div class="am-g am-margin-top">
+                                <div class="col-sm-2 am-text-right">
+                                    出版社
+                                </div>
+                                <div class="col-sm-4 col-end">
+                                    <input type="text" name="publish" class="am-input-sm">
+                                </div>
+
+                            </div>
+
+                            <div class="am-g am-margin-top-sm">
+                                <div class="col-sm-2 am-text-right">
+                                    内容描述
+                                </div>
+                                <div class="col-sm-10">
+                                    <textarea rows="10" name="bookinfo" placeholder="书籍简介"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- </form> -->
+                        </div>
+
+                        <div class="am-tab-panel am-fade" id="tab3">
+                            <!-- <form class="am-form"> -->
+                            <div class="am-g am-margin-top-sm">
+                                <div class="col-sm-2 am-text-right">
+                                    书籍位置
+                                </div>
+                                <div class="col-sm-4 col-end">
+                                    <input type="text" name="place" class="am-input-sm">
+                                </div>
+                            </div>
+                            <!-- </form> -->
+                        </div>
+
+                    </div>
+
+                </div>
+                {% csrf_token %}
+                <div class="am-margin">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+                </div>
+            </div>
+        </form>
+        <!-- content end -->
+
+    </div>
+
+    <footer style="position: absolute; bottom: -160px; height: 60px; width: 100%;">
+        <hr>
+        <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+
+    <script src="/static/amazeui/zepto.min.js"></script>
+    <script src="/static/amazeui/amazeui.min.js"></script>
+    <script src="/static/amazeui/app.js"></script>
+    <script>
+
+        var retViewportOffset = function () {
+            if (window.innerWidth) {
+                return {
+                    w: window.innerWidth,
+                    h: window.innerHeight
+                }
+            } else {
+                if (document.compatMode === 'BackCompat') {
+                    return {
+                        w: document.body.clientWidth,
+                        h: document.body.clientHeight
+                    }
+                } else {
+                    return {
+                        w: document.documentElement.clientWidth,
+                        h: document.documentElement.clientHeight
+                    }
+                }
+            }
+        }
+
+        of = retViewportOffset();
+        document.getElementsByClassName('admin-sidebar')[0].style.height = of.h - 160 + 'px';
+    </script>
+</body>
+
+</html>
